@@ -12,6 +12,7 @@ ENV SHELL=/bin/bash
 # Install unzip + rclone (support for remote filesystem)
 RUN sudo apt-get update && sudo apt-get install unzip -y
 RUN curl https://rclone.org/install.sh | sudo bash
+RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
 # Copy rclone tasks to /tmp, to potentially be used
 COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
@@ -27,7 +28,8 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
-# RUN sudo apt-get install -y ubuntu-make
+RUN sudo apt-get install -y ubuntu-make
+RUN sudo apt-get install -y nodejs
 
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
